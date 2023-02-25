@@ -1,24 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
+const URL = "https://api.spoonacular.com/recipes/random";
+const API_KEY = "136fc3acefd2479fb671a2d84bb2ebd1";
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <></>
   );
 }
 
