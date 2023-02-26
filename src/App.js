@@ -11,28 +11,38 @@ function App() {
   const [isLoaded, setisLoaded] = useState(false)
   const [items, setItems] = useState([])
   const [selectedItem, setSelectedItem] = useState(null)
+  const [summary, setSummary] = useState('')
+  const [title, setTitle] = useState('')
 
   useEffect(() => {
     const randNumber = Math.floor(Math.random() * 100)
-    const address = URL + "number=" + randNumber
+    const address = URL + "number&apiKey=" + API_KEY;
+
+    console.log(address);
   
     axios.get(address)
       .then((response) => {
         setError(null)
         setisLoaded(true)
-        setItems(response.data.recipe)
+        setItems(response.data.recipes)
+        setSummary(response.data.recipes[0].summary);
+        setTitle(response.data.recipes[0].title);
         //console.log(response.data)
       }).catch(error => {
         alert(error)
       })   
   }, [])
 
-  
-  return (
-    <>
-      <h3>Recipe of the day</h3>
+  console.log(summary);
+  console.log(items);
 
-    </>
+  return (
+    <div>
+      <h2>Recipe of the day:</h2>
+      <h3>{title}</h3>
+      <p>{summary}</p>
+      {/* <p>{items}</p> */}
+    </div>
   );
 }
 
