@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const URL = "https://api.spoonacular.com/recipes/random?";
 const API_KEY = "136fc3acefd2479fb671a2d84bb2ebd1";
-const IMAGE_URL = ""
+
 
 function App() {
   const [error, setError] = useState(null)
@@ -17,9 +17,8 @@ function App() {
   const [image, setImage] = useState('')
   
   useEffect(() => {
-    const randNumber = Math.floor(Math.random() * 100)
+    
     const address = URL + "number&apiKey=" + API_KEY;
-
     console.log(address);
   
     axios.get(address)
@@ -44,7 +43,6 @@ function App() {
       <h2>Recipe of the day:</h2>
       <h3>{title}</h3>
       <p>{summary}</p>
-      {/* <p>{items}</p> */}
       <img src={image} alt="" />
     </div>
   );
