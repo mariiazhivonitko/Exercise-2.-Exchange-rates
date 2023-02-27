@@ -9,7 +9,7 @@ const API_KEY = "136fc3acefd2479fb671a2d84bb2ebd1";
 
 function App() {
   
-  //const [items, setItems] = useState([])
+ 
   
   const [summary, setSummary] = useState('')
   const [title, setTitle] = useState('')
@@ -23,22 +23,43 @@ function App() {
     axios.get(address)
       .then((response) => {
       
-        //setItems(response.data.recipes)
+        
         setSummary(response.data.recipes[0].summary);
         setTitle(response.data.recipes[0].title);
         setImage(response.data.recipes[0].image);
-        //console.log(response.data)
+       
       }).catch(error => {
         alert(error)
       })   
   }, [])
 
   console.log(summary);
- // console.log(items);
+ 
 
   return (
     <div>
       <h2>Recipe of the day:</h2>
+      
+      <form>
+        <h5>food limitations:</h5>
+        <div>
+          <input type="checkbox" id="glutenfree" name="glutenfree" />
+          <label for="glutenfree">Glutenfree</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="dairyfree" name="dairyfree" />
+          <label for="dairyfree">Dairyfree</label>
+        </div>
+        <div>
+          <input type="checkbox" id="vegan" name="vegan" />
+          <label for="vegan">Vegan</label>
+        </div>
+        <button type='submit'>Get recipe</button>
+      </form>
+        
+      
+      
       <h3>{title}</h3>
       <p>{summary}</p>
       <img src={image} alt="" />
