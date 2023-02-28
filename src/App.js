@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const URL = "https://api.spoonacular.com/recipes/random?";
-const API_KEY = "136fc3acefd2479fb671a2d84bb2ebd1";
+//const API_KEY = "136fc3acefd2479fb671a2d84bb2ebd1";
+const API_KEY = "b4408aa9ab144e47ae2bf8eff93e72f5";
 
 
 function App() {
@@ -14,10 +15,12 @@ function App() {
   const [summary, setSummary] = useState('')
   const [title, setTitle] = useState('')
   const [image, setImage] = useState('')
+  const [gluetenfree, setGlutenfree] = useState('')
+  
   
   useEffect(() => {
     
-    const address = URL + "number&apiKey=" + API_KEY;
+    const address = URL + "&apiKey=" + API_KEY;
     console.log(address);
   
     axios.get(address)
@@ -34,16 +37,24 @@ function App() {
   }, [])
 
   console.log(summary);
+
+  function getRecipe(e) {
+    e.preventDefault()
+    
+    
+
+  }
  
 
   return (
     <div>
       <h2>Recipe of the day:</h2>
       
-      <form>
+      <form onSubmit={getRecipe}>
         <h5>food limitations:</h5>
         <div>
-          <input type="checkbox" id="glutenfree" name="glutenfree" />
+          
+          <input type="checkbox" name="glutenfree" value={gluetenfree} onChange={e => setGlutenfree(e.target.value)} />
           <label for="glutenfree">Glutenfree</label>
         </div>
 
@@ -51,11 +62,11 @@ function App() {
           <input type="checkbox" id="dairyfree" name="dairyfree" />
           <label for="dairyfree">Dairyfree</label>
         </div>
-        <div>
-          <input type="checkbox" id="vegan" name="vegan" />
+        {/* <div>
+          <input onClick={this.getChckeboxValue.bind(this)} type="checkbox" value="vegan" name="vegan"/>
           <label for="vegan">Vegan</label>
-        </div>
-        <button type='submit'>Get recipe</button>
+        </div> */}
+        <button>Get recipe</button>
       </form>
         
       
