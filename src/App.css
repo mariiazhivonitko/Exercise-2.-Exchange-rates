@@ -1,3 +1,14 @@
 body {
   margin: 20px;
 }
+
+form {
+  border: solid 2px black;
+  padding: 10px;
+  width: 20vw;
+  margin-bottom: 20px;
+}
+button {
+  background-color:cornflowerblue;
+  color: aliceblue;
+}

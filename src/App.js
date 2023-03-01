@@ -15,12 +15,27 @@ function App() {
   const [summary, setSummary] = useState('')
   const [title, setTitle] = useState('')
   const [image, setImage] = useState('')
-  const [gluetenfree, setGlutenfree] = useState('')
+  const [vegetarian, setVegetarian] = useState('')
+  //const [criteria, setCriteria] = useState('')
   
   
   useEffect(() => {
     
     const address = URL + "&apiKey=" + API_KEY;
+    console.log(address);
+  
+   
+  }, [])
+
+  console.log(summary);
+
+  function getRecipe(e) {
+    e.preventDefault()
+    let address = URL + "&apiKey=" + API_KEY
+
+    if (vegetarian == "checked") {
+      address = URL + "&tags=vegeterian" +"&apiKey=" + API_KEY;
+    }
     console.log(address);
   
     axios.get(address)
@@ -33,13 +48,7 @@ function App() {
        
       }).catch(error => {
         alert(error)
-      })   
-  }, [])
-
-  console.log(summary);
-
-  function getRecipe(e) {
-    e.preventDefault()
+      }) 
     
     
 
@@ -54,24 +63,22 @@ function App() {
         <h5>food limitations:</h5>
         <div>
           
-          <input type="checkbox" name="glutenfree" value={gluetenfree} onChange={e => setGlutenfree(e.target.value)} />
-          <label for="glutenfree">Glutenfree</label>
+          <input type="checkbox" name="vegetarian" value={vegetarian} onChange={e => setVegetarian(e.target.checked)} />
+          <label for="vegetarian">Vegetarian</label>
         </div>
 
         <div>
           <input type="checkbox" id="dairyfree" name="dairyfree" />
           <label for="dairyfree">Dairyfree</label>
         </div>
-        {/* <div>
-          <input onClick={this.getChckeboxValue.bind(this)} type="checkbox" value="vegan" name="vegan"/>
-          <label for="vegan">Vegan</label>
-        </div> */}
+       
         <button>Get recipe</button>
       </form>
         
       
       
       <h3>{title}</h3>
+
       <p>{summary}</p>
       <img src={image} alt="" />
     </div>
